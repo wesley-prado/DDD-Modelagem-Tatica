@@ -1,7 +1,10 @@
 import Address from "./address";
 
+/**
+ * Represents a Customer entity.
+ */
 export default class Customer {
-	private id: string;
+	private readonly id: string;
 	private name: string;
 	private address!: Address;
 	private active: boolean = false;

@@ -1,9 +1,12 @@
+/**
+ * Represents an address Value Object (VO).
+ */
 export default class Address {
-	private street: string;
-	private number: string;
-	private city: string;
-	private state: string;
-	private zipCode: string;
+	private readonly street: string;
+	private readonly number: string;
+	private readonly city: string;
+	private readonly state: string;
+	private readonly zipCode: string;
 
 	constructor(
 		street: string,
