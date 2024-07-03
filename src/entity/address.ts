@@ -1,7 +1,7 @@
 /**
  * Represents an address Value Object (VO).
  */
-export default class Address {
+export class Address {
 	private readonly street: string;
 	private readonly number: string;
 	private readonly city: string;
@@ -13,7 +13,7 @@ export default class Address {
 		number: string,
 		city: string,
 		state: string,
-		zipCode: string
+		zipCode: string,
 	) {
 		this.street = street;
 		this.number = number;
@@ -26,23 +26,23 @@ export default class Address {
 
 	private validate(): void {
 		if (this.street.length < 3) {
-			throw new Error("Street must be at least 3 characters long");
+			throw new Error('Street must be at least 3 characters long');
 		}
 
 		if (this.number.length < 1) {
-			throw new Error("Number must be at least 1 character long");
+			throw new Error('Number must be at least 1 character long');
 		}
 
 		if (this.city.length < 3) {
-			throw new Error("City must be at least 3 characters long");
+			throw new Error('City must be at least 3 characters long');
 		}
 
 		if (this.state.length < 2) {
-			throw new Error("State must be at least 2 characters long");
+			throw new Error('State must be at least 2 characters long');
 		}
 
 		if (this.zipCode.length < 8) {
-			throw new Error("Zip Code must be at least 8 characters long");
+			throw new Error('Zip Code must be at least 8 characters long');
 		}
 	}
 

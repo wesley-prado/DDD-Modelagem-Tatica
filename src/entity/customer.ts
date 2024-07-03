@@ -1,9 +1,9 @@
-import Address from "./address";
+import { Address } from './';
 
 /**
  * Represents a Customer entity.
  */
-export default class Customer {
+export class Customer {
 	private readonly id: string;
 	private name: string;
 	private address!: Address;
@@ -23,8 +23,8 @@ export default class Customer {
 	}
 
 	activate(): void {
-		if (this.address === undefined) {
-			throw new Error("Address is required to activate a customer");
+		if (!this.address) {
+			throw new Error('Address is required to activate a customer');
 		}
 
 		this.active = true;
@@ -48,7 +48,7 @@ export default class Customer {
 
 	private validate() {
 		if (this.name.length < 3) {
-			throw new Error("Name must be at least 3 characters long");
+			throw new Error('Name must be at least 3 characters long');
 		}
 	}
 }
