@@ -34,12 +34,12 @@ export class Customer {
 		this.active = false;
 	}
 
-	get Id(): string {
-		return this.id;
+	isActive(): boolean {
+		return this.active;
 	}
 
-	get Active(): boolean {
-		return this.active;
+	get Name(): string {
+		return this.name;
 	}
 
 	set Address(address: Address) {
@@ -47,8 +47,11 @@ export class Customer {
 	}
 
 	private validate() {
-		if (this.name.length < 3) {
-			throw new Error('Name must be at least 3 characters long');
+		if (this.id.length === 0) {
+			throw new Error('Id is required');
+		}
+		if (this.name.length < 2) {
+			throw new Error('Name must be at least 2 characters long');
 		}
 	}
 }
