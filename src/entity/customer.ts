@@ -4,15 +4,13 @@ import { Address } from './';
  * Represents a Customer entity.
  */
 export class Customer {
-	private readonly id: string;
-	private name: string;
 	private address!: Address;
 	private active: boolean = false;
 
-	constructor(id: string, name: string) {
-		this.id = id;
-		this.name = name;
-
+	constructor(
+		private readonly id: string,
+		private name: string,
+	) {
 		this.validate();
 	}
 

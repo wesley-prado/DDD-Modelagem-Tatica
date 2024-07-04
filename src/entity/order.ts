@@ -1,16 +1,13 @@
 import { OrderItem } from './order_item';
 
 export class Order {
-	private readonly id: string;
-	private customerId: string;
-	private orderItems: OrderItem[];
 	private total: number = 0;
 
-	constructor(id: string, customerId: string, orderItems: OrderItem[]) {
-		this.id = id;
-		this.customerId = customerId;
-		this.orderItems = orderItems;
-
+	constructor(
+		private readonly id: string,
+		private customerId: string,
+		private orderItems: OrderItem[],
+	) {
 		this.validate();
 
 		this.total = this.calculateTotal();

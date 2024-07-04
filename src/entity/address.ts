@@ -2,25 +2,13 @@
  * Represents an address Value Object (VO).
  */
 export class Address {
-	private readonly street: string;
-	private readonly number: string;
-	private readonly city: string;
-	private readonly state: string;
-	private readonly zipCode: string;
-
 	constructor(
-		street: string,
-		number: string,
-		city: string,
-		state: string,
-		zipCode: string,
+		private readonly street: string,
+		private readonly number: string,
+		private readonly city: string,
+		private readonly state: string,
+		private readonly zipCode: string,
 	) {
-		this.street = street;
-		this.number = number;
-		this.city = city;
-		this.state = state;
-		this.zipCode = zipCode;
-
 		this.validate();
 	}
 
