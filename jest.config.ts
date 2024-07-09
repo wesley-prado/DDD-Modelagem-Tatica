@@ -3,11 +3,11 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type {Config} from 'jest';
+import type { Config } from 'jest';
 
 const config: Config = {
 	transform: {
-		"^.+\.(t|j)sx?$": "@swc/jest",
+		'^.+.(t|j)sx?$': '@swc/jest',
 	},
 	// All imported modules in your tests should be mocked automatically
 	// automock: false,
@@ -28,15 +28,13 @@ const config: Config = {
 	// collectCoverageFrom: undefined,
 
 	// The directory where Jest should output its coverage files
-	coverageDirectory: "coverage",
+	coverageDirectory: 'coverage',
 
 	// An array of regexp pattern strings used to skip coverage collection
-	// coveragePathIgnorePatterns: [
-	//   "\\\\node_modules\\\\"
-	// ],
+	coveragePathIgnorePatterns: ['\\\\node_modules\\\\', '\\\\dist\\\\'],
 
 	// Indicates which provider should be used to instrument code for coverage
-	coverageProvider: "v8",
+	coverageProvider: 'v8',
 
 	// A list of reporter names that Jest uses when writing coverage reports
 	// coverageReporters: [
@@ -47,7 +45,20 @@ const config: Config = {
 	// ],
 
 	// An object that configures minimum threshold enforcement for coverage results
-	// coverageThreshold: undefined,
+	coverageThreshold: {
+		global: {
+			branches: 85,
+			functions: 85,
+			lines: 85,
+			statements: 85,
+		},
+		'./src/entity/*.ts': {
+			branches: 100,
+			functions: 100,
+			lines: 100,
+			statements: 100,
+		},
+	},
 
 	// A path to a custom dependency extractor
 	// dependencyExtractor: undefined,
