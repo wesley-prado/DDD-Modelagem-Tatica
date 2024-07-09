@@ -1,4 +1,4 @@
-import { Customer, Address, Order, OrderItem } from './entity';
+import { Customer, Address, Order, OrderItem } from './domain/entity';
 
 // Agregado Customer
 const customer = new Customer('1', 'John Doe');
