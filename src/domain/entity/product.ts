@@ -19,6 +19,10 @@ export class Product {
 		this.isPositive(this.price, this.errors.PRODUCT_PRICE_ERROR);
 	}
 
+	get Id(): string {
+		return this.id;
+	}
+
 	get Name(): string {
 		return this.name;
 	}
