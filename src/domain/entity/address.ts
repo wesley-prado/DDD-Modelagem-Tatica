@@ -34,6 +34,26 @@ export class Address {
 		}
 	}
 
+	get Street(): string {
+		return this.street;
+	}
+
+	get Number(): string {
+		return this.number;
+	}
+
+	get City(): string {
+		return this.city;
+	}
+
+	get State(): string {
+		return this.state;
+	}
+
+	get ZipCode(): string {
+		return this.zipCode;
+	}
+
 	toString(): string {
 		return `${this.street}, ${this.number} - ${this.city}/${this.state} - ${this.zipCode}`;
 	}
