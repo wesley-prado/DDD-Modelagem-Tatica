@@ -91,4 +91,20 @@ describe('Address unit tests', () => {
 				),
 		).toThrow(new Error('Zip Code must be at least 8 characters long'));
 	});
+
+	it('should return all address properties correctly', () => {
+		const address = new Address(
+			'any_street',
+			'any_number',
+			'any_city',
+			'any_state',
+			'any_zipCode',
+		);
+
+		expect(address.Street).toBe('any_street');
+		expect(address.Number).toBe('any_number');
+		expect(address.City).toBe('any_city');
+		expect(address.State).toBe('any_state');
+		expect(address.ZipCode).toBe('any_zipCode');
+	});
 });
