@@ -1,14 +1,6 @@
 import { Table, Model, PrimaryKey, Column } from 'sequelize-typescript';
 
-export type AddressColumns = {
-	street: string;
-	number: string;
-	city: string;
-	state: string;
-	zipCode: string;
-};
-
-@Table({ tableName: 'customers' })
+@Table({ tableName: 'customers', timestamps: false })
 export class CustomerModel extends Model {
 	@PrimaryKey
 	@Column
