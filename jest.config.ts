@@ -52,7 +52,7 @@ const config: Config = {
 			lines: 85,
 			statements: 85,
 		},
-		'./src/entity/*.ts': {
+		'./src/domain/entity/*.ts': {
 			branches: 100,
 			functions: 100,
 			lines: 100,
