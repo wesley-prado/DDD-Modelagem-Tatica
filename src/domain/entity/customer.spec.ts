@@ -29,17 +29,19 @@ describe('Customer unit tests', () => {
 	it('should activate the customer', () => {
 		const customer = new Customer('any_id', 'John Doe');
 
-		customer.Address = new Address(
-			'any_street',
-			'123',
-			'any_city',
-			'any_state',
-			'18075000',
+		customer.changeAddress(
+			new Address(
+				'any_street',
+				'123',
+				'any_city',
+				'any_state',
+				'18075000',
+			),
 		);
 
 		customer.activate();
 
-		expect(customer.isActive()).toBe(true);
+		expect(customer.IsActive).toBe(true);
 	});
 
 	it('should deactivate the customer', () => {
@@ -47,7 +49,7 @@ describe('Customer unit tests', () => {
 
 		customer.deactivate();
 
-		expect(customer.isActive()).toBe(false);
+		expect(customer.IsActive).toBe(false);
 	});
 
 	it('should throw an error when activating a customer without an address', () => {
@@ -57,7 +59,7 @@ describe('Customer unit tests', () => {
 			'Address is required to activate a customer',
 		);
 
-		expect(customer.isActive()).toBe(false);
+		expect(customer.IsActive).toBe(false);
 	});
 
 	it('should get the customer id', () => {

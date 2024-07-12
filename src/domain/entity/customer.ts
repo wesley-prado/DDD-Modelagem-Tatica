@@ -33,7 +33,7 @@ export class Customer {
 		this.active = false;
 	}
 
-	isActive(): boolean {
+	get IsActive(): boolean {
 		return this.active;
 	}
 
@@ -45,8 +45,12 @@ export class Customer {
 		return this.name;
 	}
 
-	set Address(address: Address) {
+	changeAddress(address: Address) {
 		this.address = address;
+	}
+
+	get Address(): Address {
+		return this.address;
 	}
 
 	addRewardPoints(points: number): void {

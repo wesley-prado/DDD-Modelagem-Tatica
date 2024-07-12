@@ -3,7 +3,7 @@ import { Customer, Address, Order, OrderItem } from './domain/entity';
 // Agregado Customer
 const customer = new Customer('1', 'John Doe');
 const address = new Address('Main St', '123', 'Springfield', 'IL', '18075260');
-customer.Address = address;
+customer.changeAddress(address);
 customer.activate();
 
 // Agregado Order
