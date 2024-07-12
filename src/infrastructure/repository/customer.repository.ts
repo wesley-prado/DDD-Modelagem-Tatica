@@ -1,21 +1,22 @@
 import { Address, Customer } from '../../domain/entity';
 import { CustomerRepositoryInterface } from '../../domain/repository';
-import { CustomerModel, AddressColumns } from '../db/sequelize/model';
+import { CustomerModel } from '../db/sequelize/model';
 
 export class CustomerRepository implements CustomerRepositoryInterface {
 	async create(entity: Customer): Promise<void> {
+		const model = this.createModelFromCustomer(entity);
+
 		await CustomerModel.create({
-			id: entity.Id,
-			name: entity.Name,
-			...this.extractAddress(entity.Address),
+			...model.dataValues,
 		});
 	}
 
 	async update(entity: Customer): Promise<void> {
-		await CustomerModel.update(
-			{ name: entity.Name, ...this.extractAddress(entity.Address) },
-			{ where: { id: entity.Id } },
-		);
+		const model = this.createModelFromCustomer(entity);
+
+		await CustomerModel.update(model.dataValues, {
+			where: { id: entity.Id },
+		});
 	}
 
 	async findById(id: string): Promise<Customer | null> {
@@ -23,34 +24,45 @@ export class CustomerRepository implements CustomerRepositoryInterface {
 
 		if (!customerModel) return null;
 
-		const customer = new Customer(customerModel.id, customerModel.name);
-		customer.Address = new Address(
-			customerModel.street,
-			customerModel.number,
-			customerModel.city,
-			customerModel.state,
-			customerModel.zipCode,
-		);
-
-		return customer;
+		return this.createCustomerFromModel(customerModel);
 	}
 
 	async findAll(): Promise<Customer[]> {
-		const Customers = await CustomerModel.findAll();
+		const customerModels = await CustomerModel.findAll();
 
-		return Customers.map(
-			(Customer) =>
-				new Customer(Customer.id, Customer.name, Customer.price),
-		);
+		return customerModels.map((customerModel) => {
+			return this.createCustomerFromModel(customerModel);
+		});
 	}
 
-	private extractAddress(address: Address): AddressColumns {
-		return {
-			street: address.Street,
-			number: address.Number,
-			city: address.City,
-			state: address.State,
-			zipCode: address.ZipCode,
-		};
+	private createModelFromCustomer(customer: Customer): CustomerModel {
+		return new CustomerModel({
+			id: customer.Id,
+			name: customer.Name,
+			active: customer.IsActive,
+			rewardPoints: customer.RewardPoints,
+			street: customer.Address.Street,
+			number: customer.Address.Number,
+			city: customer.Address.City,
+			state: customer.Address.State,
+			zipCode: customer.Address.ZipCode,
+		});
+	}
+
+	private createCustomerFromModel(customerModel: CustomerModel): Customer {
+		const customer = new Customer(customerModel.id, customerModel.name);
+		customer.changeAddress(
+			new Address(
+				customerModel.street,
+				customerModel.number,
+				customerModel.city,
+				customerModel.state,
+				customerModel.zipCode,
+			),
+		);
+		customer.addRewardPoints(customerModel.rewardPoints);
+		if (customerModel.active) customer.activate();
+
+		return customer;
 	}
 }
