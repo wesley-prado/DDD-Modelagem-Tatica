@@ -5,34 +5,38 @@ export class Order {
 
 	constructor(
 		private readonly id: string,
-		private customerId: string,
-		private orderItems: OrderItem[],
+		private readonly customerId: string,
+		private items: OrderItem[],
 	) {
 		this.validate();
 
-		this.total = this.calculateTotal();
+		this.updateTotal();
 	}
 
-	getTotal() {
+	get Id() {
+		return this.id;
+	}
+
+	get Total() {
 		return this.total;
 	}
 
-	getCustomerId() {
+	get CustomerId() {
 		return this.customerId;
 	}
 
-	getOrderItems() {
-		return this.orderItems;
+	get Items() {
+		return this.items;
 	}
 
-	calculateTotal(): number {
-		return this.orderItems.reduce(
-			(acc, orderItem) => acc + orderItem.getTotal(),
+	private updateTotal() {
+		this.total = this.items.reduce(
+			(acc, orderItem) => acc + orderItem.Total,
 			0,
 		);
 	}
 
-	validate() {
+	private validate() {
 		if (!this.id) {
 			throw new Error('Order must have an id');
 		}
@@ -41,7 +45,7 @@ export class Order {
 			throw new Error('Order must have a customerId');
 		}
 
-		if (!this.orderItems || this.orderItems.length === 0) {
+		if (!this.items || this.items.length === 0) {
 			throw new Error('Order must have at least one OrderItem');
 		}
 	}

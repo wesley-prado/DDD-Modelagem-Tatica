@@ -7,7 +7,7 @@ describe('Order unit tests', () => {
 			new OrderItem('order_item_2', 'product_2', 50, 5),
 		]);
 
-		expect(order.getTotal()).toBe(1250);
+		expect(order.Total).toBe(1250);
 	});
 
 	it('should throw an error if customerId is not provided', () => {
@@ -33,7 +33,7 @@ describe('Order unit tests', () => {
 			new OrderItem('order_item_1', 'product_1', 100, 10),
 		]);
 
-		expect(order.getCustomerId()).toBe('any_customer_id');
+		expect(order.CustomerId).toBe('any_customer_id');
 	});
 
 	it('should return the orderItems', () => {
@@ -44,15 +44,25 @@ describe('Order unit tests', () => {
 
 		const order = new Order('any_id', 'any_customer_id', orderItems);
 
-		expect(order.getOrderItems()).toBe(orderItems);
+		expect(order.Items).toBe(orderItems);
 	});
 
-	it('should calculate the total of the order', () => {
-		const order = new Order('any_id', 'any_customer_id', [
+	it('should add items to the order', () => {
+		const orderItems = [
 			new OrderItem('order_item_1', 'product_1', 100, 10),
 			new OrderItem('order_item_2', 'product_2', 50, 5),
-		]);
+		];
 
-		expect(order.calculateTotal()).toBe(1250);
+		const order = new Order('any_id', 'any_customer_id', orderItems);
+
+		const newOrderItems = [
+			new OrderItem('order_item_3', 'product_3', 50, 5),
+			new OrderItem('order_item_4', 'product_4', 100, 10),
+		];
+
+		order.addItems(newOrderItems);
+
+		expect(order.Items).toEqual([...orderItems, ...newOrderItems]);
+		expect(order.Total).toBe(100 * 10 * 2 + 50 * 5 * 2);
 	});
 });

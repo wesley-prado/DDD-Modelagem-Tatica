@@ -9,7 +9,7 @@ describe('OrderService unit test', () => {
 		const order: Order = OrderService.placeOrder(customer, [orderItem]);
 
 		expect(customer.RewardPoints).toBe(5);
-		expect(order.getTotal()).toBe(10);
+		expect(order.Total).toBe(10);
 	});
 
 	it('should get the total of all orders', () => {

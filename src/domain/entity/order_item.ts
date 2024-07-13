@@ -12,19 +12,23 @@ export class OrderItem {
 		this.total = this.calculateTotal();
 	}
 
-	getTotal() {
+	get Id() {
+		return this.id;
+	}
+
+	get Total() {
 		return this.total;
 	}
 
-	getProductId() {
+	get ProductId() {
 		return this.productId;
 	}
 
-	getQuantity() {
+	get Quantity() {
 		return this.quantity;
 	}
 
-	getPrice() {
+	get Price() {
 		return this.price;
 	}
 
