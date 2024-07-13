@@ -29,6 +29,11 @@ export class Order {
 		return this.items;
 	}
 
+	addItems(items: OrderItem[]) {
+		this.items = this.items.concat(items);
+		this.updateTotal();
+	}
+
 	private updateTotal() {
 		this.total = this.items.reduce(
 			(acc, orderItem) => acc + orderItem.Total,
