@@ -139,9 +139,6 @@ describe('CustomerRepository test', () => {
 		);
 		customer2.addRewardPoints(200);
 
-		console.log(customer1.RewardPoints);
-		console.log(customer2.RewardPoints);
-
 		await sut.create(customer1);
 		await sut.create(customer2);
 
