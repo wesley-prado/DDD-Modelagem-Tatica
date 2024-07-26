@@ -1,20 +1,20 @@
 import { Sequelize } from 'sequelize-typescript';
-import { Customer, Address, OrderItem } from './domain/entity';
-import { EventDispatcher } from './domain/event/@shared';
-import { CustomerEventRepositoryDecorator } from './infrastructure/repository/';
-import { OrderService } from './domain/service';
-import { CustomerRepository } from './infrastructure/repository';
-import {
-    CustomerModel,
-    OrderItemModel,
-    OrderModel,
-    ProductModel,
-} from './infrastructure/db/sequelize/model';
+import Customer from './domain/customer/entity/customer';
+import Address from './domain/customer/vo/address';
+import OrderService from './domain/checkout/service/order.service';
+import OrderItem from './domain/checkout/entity/order_item';
+import { EventDispatcher } from './domain/@shared/event';
+import CustomerEventRepositoryDecorator from './infrastructure/customer/repository/sequelize/customer-event-repository.decorator';
+import CustomerRepository from './infrastructure/customer/repository/sequelize/customer.repository';
+import CustomerModel from './infrastructure/customer/repository/sequelize/customer.model';
+import OrderItemModel from './infrastructure/checkout/repository/sequelize/order-item.model';
+import OrderModel from './infrastructure/checkout/repository/sequelize/order.model';
+import ProductModel from './infrastructure/product/repository/sequelize/product.model';
 import {
     EnviaConsoleLog1Handler,
     EnviaConsoleLog2Handler,
     EnviaConsoleLogHandler,
-} from './domain/event/customer';
+} from './domain/customer/event';
 
 const customerRepository = new CustomerRepository();
 const eventDispatcher = new EventDispatcher();
