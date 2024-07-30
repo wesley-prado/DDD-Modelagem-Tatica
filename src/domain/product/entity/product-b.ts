@@ -1,6 +1,6 @@
 import ProductInterface from './product.interface';
 
-export default class Product implements ProductInterface {
+export default class ProductB implements ProductInterface {
     private readonly errors = Object.freeze({
         PRODUCT_EMPTY_ID_ERROR: 'Product must have an id',
         PRODUCT_EMPTY_NAME_ERROR: 'Product must have a name',
@@ -35,7 +35,7 @@ export default class Product implements ProductInterface {
     }
 
     get Price(): number {
-        return this.price;
+        return this.price * 2;
     }
 
     changePrice(price: number): void {
