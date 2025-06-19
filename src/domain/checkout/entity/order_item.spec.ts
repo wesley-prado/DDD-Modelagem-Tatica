@@ -32,13 +32,13 @@ describe('OrderItem unit tests', () => {
     });
 
     it('should throw an error when the quantity is less or equal zero', () => {
-        expect(() => new OrderItem('any_id', 'any_productId', -1, 10)).toThrow(
+        expect(() => new OrderItem('any_id', 'any_productId', 0, 10)).toThrow(
             'quantity must be greater than 0',
         );
     });
 
     it('should throw an error when the price is less or equal zero', () => {
-        expect(() => new OrderItem('any_id', 'any_productId', 1, -1)).toThrow(
+        expect(() => new OrderItem('any_id', 'any_productId', 1, 0)).toThrow(
             'price must be greater than 0',
         );
     });

@@ -1,4 +1,3 @@
-// import { Address, Customer } from '.';
 import Customer from './customer';
 import Address from '../vo/address';
 

@@ -24,7 +24,7 @@ Para executar este projeto, você precisa ter o Docker e o Docker Compose instal
 
 ## Testes
 
-Para executar os testes, use o comando `npm test` no terminal. Isso irá executar todos os testes unitários do projeto.
+Para executar os testes, use o comando `npm i` para instalar as dependências de desenvolvimento. Após a instalação, execute o comando `npm test` para executar os testes unitários do projeto.
 
 ## Licença
 

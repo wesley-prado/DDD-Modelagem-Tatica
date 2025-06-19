@@ -15,6 +15,6 @@ RUN npm install
 
 COPY . .
 
-RUN npm run tsc
+RUN npm run test & npm run tsc
 
 EXPOSE 3000
